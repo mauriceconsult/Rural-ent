@@ -2,7 +2,7 @@ import { connectToDB } from "@utils/database";
 import Record from "@models/record";
 
 // GET read
-export const GET = async (request, {params}) => {
+export const GET = async (_request, {params}) => {
   try {
     await connectToDB();
 
@@ -40,7 +40,7 @@ export const PATCH = async (request, { params }) => {
 }
 
 // DELETE delete
-export const DELETE = async (request, { params }) => {
+export const DELETE = async (_request, { params }) => {
     try {
         await connectToDB();
 

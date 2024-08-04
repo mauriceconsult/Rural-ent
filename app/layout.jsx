@@ -5,7 +5,7 @@ import Provider from "@components/Provider";
 
 export const metadata = {
   title: "Newgenie",
-  description: "The tool for the discerning manager",
+  description: "The agile management tool",
 };
 
 const RootLayout = ({ children }) => (

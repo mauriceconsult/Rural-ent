@@ -1,7 +1,7 @@
 import { connectToDB } from "@utils/database";
 import Record from "@models/record";
 
-export const GET = async (request, {params}) => {
+export const GET = async (_request, {params}) => {
   try {
       await connectToDB();
       
