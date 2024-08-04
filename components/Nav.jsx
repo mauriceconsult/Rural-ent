@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -12,19 +11,18 @@ const Nav = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    };
-    setUpProviders();
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
   }, []);
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/SWAlogo.svg"
-          alt="SWA Logo"
+          src="/assets/images/Newgenielogo.svg"
+          alt="Newgenie"
           width={30}
           height={30}
           className="object-contain"
@@ -32,12 +30,15 @@ const Nav = () => {
         <p className="logo_text">SUPPORT WOMEN AID</p>
       </Link>
 
+      {/* Desktop Navigation */}
+
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-record" className="black_btn">
               Create Record
             </Link>
+
             <button type="button" onClick={signOut} className="outline_btn">
               Sign Out
             </button>
@@ -59,16 +60,19 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.name}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className="black_btn"
                 >
-                  {" "}
-                  Sign In
+                  Sign in
                 </button>
               ))}
           </>
         )}
       </div>
+
+      {/* Mobile Navigation */}
 
       <div className="sm:hidden flex relative">
         {session?.user ? (
@@ -79,7 +83,7 @@ const Nav = () => {
               height={37}
               className="rounded-full"
               alt="profile"
-              onClick={() => setToggleDropdown((prev) => !prev)}
+              onClick={() => setToggleDropdown(!toggleDropdown)}
             />
             {toggleDropdown && (
               <div className="dropdown">
@@ -117,11 +121,12 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.name}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className="black_btn"
                 >
-                  {" "}
-                  Sign In
+                  Sign in
                 </button>
               ))}
           </>

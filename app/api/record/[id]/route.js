@@ -9,13 +9,9 @@ export const GET = async (request, {params}) => {
       const record = await Record.findById(params.id).populate("creator");
       if(!record) return new Response("Record not available", {status: 404})
 
-    return new Response(JSON.stringify(record), {
-      status: 200,
-    });
-  } catch (error) {
-    return new Response("Failed to fetch all records", {
-      status: 500,
-    });
+    return new Response(JSON.stringify(record), { status: 200 });
+  } catch (error) { return new Response("Failed to fetch all records", {
+      status: 500 });
   }
 };
 
@@ -36,9 +32,8 @@ export const PATCH = async (request, { params }) => {
 
         await existingRecord.save();
 
-        return new Response(JSON.stringify
-            (existingRecord), {status: 200}
-        )
+      return new Response("Successfully updated the Prompts", { status: 200 });
+      
     } catch (error) {
         return new Response("Failed to update record", { status: 500})
     }
@@ -53,8 +48,6 @@ export const DELETE = async (request, { params }) => {
 
         return  new Response("Record deleted successfully", {status: 200})
     } catch (error) {
-        return new Response("Failed to delete record", {
-            status: 500
-        })
+        return new Response("Failed to delete record", { status: 500 })
     }
 }

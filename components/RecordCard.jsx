@@ -12,6 +12,14 @@ const RecordCard = ({ post, handleRecordClick, handleEdit, handleDelete }) => {
 
   const [copied, setCopied] = useState("");
 
+  const handleProfileClick = () => {
+    console.log(post);
+
+    if (post.creator._id === session?.user.id) return router.push("/profile");
+
+    router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
+  };  
+
   const handleCopy = () => {
     setCopied(post.record);
     navigator.clipboard.writeText(post.record);
@@ -22,8 +30,8 @@ const RecordCard = ({ post, handleRecordClick, handleEdit, handleDelete }) => {
     <div className="record_card">
       <div className="flex justify-between items-start gap-5">
         <div
-          className="flex-1 flex justify-start items-center gap-3 
-        cursor-pointer"
+          className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
+          onClick={handleProfileClick}
         >
           <Image
             src={post.creator.image}
@@ -69,12 +77,9 @@ const RecordCard = ({ post, handleRecordClick, handleEdit, handleDelete }) => {
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div
-          className="mt-5 flex-center gap-4 border-t
-        border-gray-100 pt-3"
-        >
+          className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3" >
           <p
-            className="font-inter text-sm green_gradient
-            cursor-pointer"
+            className="font-inter text-sm green_gradient cursor-pointer"
             onClick={handleEdit}
           >
             Edit
@@ -86,7 +91,6 @@ const RecordCard = ({ post, handleRecordClick, handleEdit, handleDelete }) => {
           >
             Delete
           </p>
-          
         </div>
       )}
     </div>

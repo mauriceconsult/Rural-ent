@@ -7,12 +7,8 @@ export const GET = async (request, {params}) => {
       
       const records = await Record.find({creator: params.id}).populate("creator");
 
-    return new Response(JSON.stringify(records), {
-      status: 200,
-    });
+    return new Response(JSON.stringify(records), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch all records", {
-      status: 500,
-    });
+    return new Response("Failed to fetch records created by user", { status: 500 });
   }
 };

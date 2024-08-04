@@ -19,34 +19,78 @@ const RecordCardList = ({ data, handleRecordClick }) => {
 
 const Feed = () => {
   //useState[searchText, setSearchText] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
 
-  const handleSearchChange = (e) => {};
+  // Search states
+  const [searchText, setSearchText] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchedResults, setSearchedResults] = useState([]);
+
+  const fetchPosts = async () => {
+    const response = await fetch("/api/record");
+    const data = await response.json();
+
+    setAllPosts(data);
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/record");
-      const data = await response.json();
-
-      setPosts(data);
-    };
     fetchPosts();
   }, []);
+
+  const filterRecords = (searchtext) => {
+    const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
+    return allPosts.filter(
+      (item) =>
+        regex.test(item.creator.username) ||
+        regex.test(item.receipt) ||
+        regex.test(item.receiptDetails) ||
+        regex.test(item.expense) ||
+        regex.test(item.expenseDetails)
+    );
+  };
+
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    // debounce method
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResult = filterRecords(e.target.value);
+        setSearchedResults(searchResult);
+      }, 500)
+    );
+  };
+
+  const handleRecordClick = (recordName) => {
+    setSearchText(recordName);
+
+    const searchResult = filterPrompts(recordName);
+    setSearchedResults(searchResult);
+  };
 
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
         <input
           type="text"
-          placeholder="Search receipts and expenses details"
-          //value={searchText}
+          placeholder="Search for a record or a username"
+          value={searchText}
           onChange={handleSearchChange}
           required
           className="search_input peer"
         />
       </form>
 
-      <RecordCardList data={posts} handleRecordClick={() => {}} />
+      {/* All Records */}
+      {searchText ? (
+        <RecordCardList
+          data={searchedResults}
+          handleTagClick={handleRecordClick}
+        />
+      ) : (
+        <RecordCardList data={allPosts} handleRecordClick={handleRecordClick} />
+      )}
     </section>
   );
 };

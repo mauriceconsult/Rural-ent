@@ -4,26 +4,25 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
 export const metadata = {
-  title: "Nextgen Manager",
-  description: "A tool for the discerning manager",
+  title: "Newgenie",
+  description: "The tool for the discerning manager",
 };
 
-const RootLayout = ({ children }) => {
-  return (
-    <html lang="en">
+const RootLayout = ({ children }) => (
+  <html lang="en">
+    <body>
       <Provider>
-        <body>
-          <div className="main">
-            <div className="gradient" />
-          </div>
-          <main className="app">
-            <Nav />
-            {children}
-          </main>
-        </body>
+        <div className="main">
+          <div className="gradient" />
+        </div>
+
+        <main className="app">
+          <Nav />
+          {children}
+        </main>
       </Provider>
-    </html>
-  );
-};
+    </body>
+  </html>
+);
 
 export default RootLayout;

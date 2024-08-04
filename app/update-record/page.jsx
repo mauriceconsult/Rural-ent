@@ -5,12 +5,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const EditRecord = () => {
+const UpdateRecord = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const recordId = searchParams.get("id");
 
-  const [submitting, setSubmitting] = useState(false);
+  const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({
     receipt: Number,
     receiptDetails: "",
@@ -19,7 +19,7 @@ const EditRecord = () => {
   });
 
   useEffect(() => {
-    const getRecordDetails = async (e) => {
+    const getRecordDetails = async () => {
       const response = await fetch(`/api/record/{recordId}`);
       const data = await response.json();
       setPost({
@@ -34,9 +34,9 @@ const EditRecord = () => {
 
     const updateRecord = async (e) => {
       e.preventDefault();
-      setSubmitting(true);
+      setIsSubmitting(true);
 
-      if(!recordId) return alert("Record ID not found")
+      if(!recordId) return alert("Missing RecordId!")
 
       try {
         const response = await fetch(`/api/record/${recordId}`, {
@@ -55,7 +55,7 @@ const EditRecord = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        setSubmitting(false);
+        setIsSubmitting(false);
       }
     };
   return (
@@ -69,4 +69,4 @@ const EditRecord = () => {
   );
 };
 
-export default EditRecord;
+export default UpdateRecord;
