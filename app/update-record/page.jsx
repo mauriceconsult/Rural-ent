@@ -20,7 +20,7 @@ const UpdateRecord = () => {
 
   useEffect(() => {
     const getRecordDetails = async () => {
-      const response = await fetch(`/api/record/{recordId}`);
+      const response = await fetch(`/api/record/${recordId}`);
       const data = await response.json();
       setPost({
         receipt: data.receipt,
