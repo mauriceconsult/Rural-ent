@@ -21,13 +21,13 @@ const Nav = () => {
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/Newgenielogo.svg"
-          alt="Newgenie"
+          src="/assets/images/vblogo.svg"
+          alt="Vision_Bearers"
           width={30}
           height={30}
           className="object-contain"
         />
-        <p className="logo_text">Newgenie</p>
+        <p className="logo_text">Vision Bearers Academy</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -35,8 +35,36 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="/create-record" className="black_btn">
-              Create Record
+            <Link href="/register-student" className="black_btn">
+              Register Student
+            </Link>
+            <Link
+              href="/receive-fees"
+              className="dropdown_link"
+              onClick={() => setToggleDropdown(false)}
+            >
+              Receive Fees
+            </Link>
+            <Link
+              href="/create-class"
+              className="dropdown_link"
+              onClick={() => setToggleDropdown(false)}
+            >
+              Create Class
+            </Link>
+            <Link
+              href="/create-notices"
+              className="dropdown_link"
+              onClick={() => setToggleDropdown(false)}
+            >
+              Create Notices
+            </Link>
+            <Link
+              href="/register teacher"
+              className="dropdown_link"
+              onClick={() => setToggleDropdown(false)}
+            >
+              Register Teacher
             </Link>
 
             <button type="button" onClick={signOut} className="outline_btn">
@@ -88,18 +116,46 @@ const Nav = () => {
             {toggleDropdown && (
               <div className="dropdown">
                 <Link
-                  href="/profile"
+                  href="/admin"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  My Profile
+                  Admin
                 </Link>
                 <Link
-                  href="/create-record"
+                  href="/register-student"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Record
+                  Register Student
+                </Link>
+                <Link
+                  href="/receive-fees"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Receive Fees
+                </Link>
+                <Link
+                  href="/create-class"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Class
+                </Link>
+                <Link
+                  href="/create-notices"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Notices
+                </Link>
+                <Link
+                  href="/register teacher"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Register Teacher
                 </Link>
                 <button
                   type="button"

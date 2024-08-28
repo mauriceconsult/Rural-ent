@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import Profile from "@components/Profile";
+import Profile from "@components/Admin";
 
 const MyProfile = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  
-   const [myPosts, setMyPosts] = useState([]);
+
+  const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,7 +25,6 @@ const MyProfile = () => {
   const handleEdit = (post) => {
     router.push(`/update-record?id=${post._id}`);
   };
-  
 
   const handleDelete = async (post) => {
     const hasConfirmed = confirm(

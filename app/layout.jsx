@@ -4,8 +4,8 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
 export const metadata = {
-  title: "Newgenie",
-  description: "The agile management tool",
+  title: "Vision Bearers Academy",
+  description: "Your education partner in South Sudan",
 };
 
 const RootLayout = ({ children }) => (
