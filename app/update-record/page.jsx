@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import Form from "@components/Form";
+import Form from "@components/form/Form";
 
 const UpdateRecord = () => {
   const router = useRouter();
@@ -32,32 +32,32 @@ const UpdateRecord = () => {
     if (recordId) getRecordDetails();
   }, [recordId]);
 
-    const updateRecord = async (e) => {
-      e.preventDefault();
-      setIsSubmitting(true);
+  const updateRecord = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-      if(!recordId) return alert("Missing RecordId!")
+    if (!recordId) return alert("Missing RecordId!");
 
-      try {
-        const response = await fetch(`/api/record/${recordId}`, {
-          method: "PATCH",
-          body: JSON.stringify({
-            receipt: post.receipt,
-            receiptDetails: post.receiptDetails,
-            expense: post.expense,
-            expenseDetails: post.expenseDetails,
-            }),
-        });
+    try {
+      const response = await fetch(`/api/record/${recordId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          receipt: post.receipt,
+          receiptDetails: post.receiptDetails,
+          expense: post.expense,
+          expenseDetails: post.expenseDetails,
+        }),
+      });
 
-        if (response.ok) {
-          router.push("/");
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsSubmitting(false);
+      if (response.ok) {
+        router.push("/");
       }
-    };
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <Form
       type="Edit"

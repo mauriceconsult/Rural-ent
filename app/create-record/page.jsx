@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import Form from "@components/Form";
+import Form from "@components/form/Form";
 
 const CreateRecord = () => {
   const router = useRouter();
@@ -23,15 +23,14 @@ const CreateRecord = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/record/new',
-        {
-          method: "POST",
-          body: JSON.stringify({
-            receipt: post.receipt,
-            receiptDetails: post.receiptDetails,
-            expense: post.expense,
-            expenseDetails: post.expenseDetails,
-            userId: session?.user.id,
+      const response = await fetch("/api/record/new", {
+        method: "POST",
+        body: JSON.stringify({
+          receipt: post.receipt,
+          receiptDetails: post.receiptDetails,
+          expense: post.expense,
+          expenseDetails: post.expenseDetails,
+          userId: session?.user.id,
         }),
       });
 

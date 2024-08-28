@@ -1,4 +1,5 @@
 import Feed from "@components/Feed";
+import RegistrationForm from "@components/form/RegistrationForm";
 
 const Home = () => (
   <section className="w-full flex-center flex-col">
@@ -12,8 +13,8 @@ const Home = () => (
     <p className="desc text-center">
       Newgenie is an agile tool that adapts to your organization needs.
     </p>
-
-    <Feed />
+    {/* <Feed /> */}
+    <RegistrationForm />
   </section>
 );
 
