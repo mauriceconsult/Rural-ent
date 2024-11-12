@@ -12,11 +12,10 @@ export async function POST(req, { params }) {
 
     const { imageUrl, title, category, tags, description } = await req.json();
 
-    // if (
-    //   session?.user?.role === "ADMIN" ||
-    //   session?.user?.permissions?.includes("CREATE_BLOG")
-    // )
-    {
+    if (
+      session?.user?.role === "ADMIN" ||
+      session?.user?.permissions?.includes("CREATE_BLOG")
+    ) {
       // push the data into the DB
       const new_blog = await prisma.blog.create({
         data: {
@@ -35,13 +34,12 @@ export async function POST(req, { params }) {
         { message: "Blog Added Successfully!" },
         { status: 201 }
       );
-    } 
-    // else {
-    //   return NextResponse.json(
-    //     { message: "You Do not have Add blog permissions!" },
-    //     { status: 403 }
-    //   );
-    // }
+    } else {
+      return NextResponse.json(
+        { message: "You Do not have Add blog permissions!" },
+        { status: 403 }
+      );
+    }
   } catch (error) {
     console.log("Error while Registeing", error);
     return NextResponse.json(
