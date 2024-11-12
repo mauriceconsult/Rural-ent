@@ -8,7 +8,8 @@ import { redirect } from "next/navigation";
 const prisma = new PrismaClient();
 
 export const fetchBlogs = async () => {
-  const blogs = await prisma.blog.findMany({});
+  // const blogs = await prisma.blog.findMany({});
+  const blogs = await prisma.blog.findMany();
   return blogs;
 };
 
