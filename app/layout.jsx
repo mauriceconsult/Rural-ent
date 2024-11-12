@@ -4,8 +4,8 @@ import { Providers } from "../components/Provider";
 import ToastComponent from "../components/toaster/ToastComponent";
 
 export const metadata = {
-  title: "Support Women Aid",
-  description: "Champion for the South Sudanese woman",
+  title: "Communication solutions",
+  description: "Individual and corporate communication solutions",
 };
 
 export default function RootLayout({ children }) {

@@ -94,7 +94,7 @@ export const authOptions = {
     signIn: "/login",
   },
 
-  debug: process.env.NODE_ENV === "development",
+  debug: process.env.NODE_ENV !== "production",
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },

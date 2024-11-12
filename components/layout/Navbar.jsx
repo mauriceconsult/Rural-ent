@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-// import LogoutButton from "@app/ui/LogoutButton";
 import LogoutButton from "../../app/ui/LogoutButton";
 
 const Navbar = () => {
@@ -15,7 +14,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/blogs">
               <Image
-                src="/swalogo.png"
+                src="/mcalogo.jpg"
                 alt="Logo"
                 height="50"
                 width="50"
@@ -25,7 +24,7 @@ const Navbar = () => {
             </Link>
 
             <span className="text-white text-2xl font-bold mx-auto">
-              Support Women Aid
+              Comm Solutions
             </span>
           </div>
           <div className="flex items-center">
@@ -40,7 +39,7 @@ const Navbar = () => {
                 href="/blogs/add-blog"
                 className="text-white hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Create
+                Create Blog
               </Link>
             )}
 
@@ -62,20 +61,15 @@ const Navbar = () => {
                 Admin
               </Link>
             )}
+             {session &&  <LogoutButton label={'Logout'} />}
 
-            {session && <LogoutButton label={"Logout"} />}
-
-            {!session && (
-              <Link
-                href="/auth/login"
-                className="hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Login
-              </Link>
-            )}
+                       {!session && <Link href="/auth/login" className="hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Login
+                            </Link> }
+            </div>
           </div>
         </div>
-      </div>
+      
     </nav>
   );
 };

@@ -14,16 +14,15 @@ export default async function Home() {
     <section className="w-full flex-center flex-col">
       <h2>Welcome {session?.user?.username}</h2>
       <h1 className="head_text text-center">
-        Support Women Aid (SWA)
+        Comm Solutions
         <br className="max-md:hidden" />
         <span className="orange_gradient text-center">
           {" "}
-          Organization Communication System
+          For all your personal and corporate communication.
         </span>
       </h1>
       <p className="desc text-center">
-        We pursue equal opportunities and sustainable community of skills and
-        talents in South Sudan.
+        Professional communication solutions for individuals and corporates
       </p>
       <div>
         <LogoutButton label={"Logout"} />
