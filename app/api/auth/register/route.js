@@ -18,7 +18,7 @@ export async function POST(req, res) {
     if (exists) {
       console.log("User already exists!");
       return NextResponse.json(
-        { message: "Username or Email Already Exists." },
+        { message: "Username or email already exists." },
         {
           status: 500,
         }
@@ -34,11 +34,11 @@ export async function POST(req, res) {
       },
     });
 
-    return NextResponse.json({ message: "User Registered" }, { status: 201 });
+    return NextResponse.json({ message: "User registered" }, { status: 201 });
   } catch (error) {
-    console.log("Error while Registering", error);
+    console.log("Error while registering", error);
     return NextResponse.json(
-      { message: "Error Occured While Registering the user." },
+      { message: "Error occured while registering the user." },
       { status: 500 }
     );
   }

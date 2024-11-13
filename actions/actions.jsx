@@ -90,7 +90,7 @@ export const updateBlog = async (id, formData) => {
     revalidatePath(`/blogs/update-blog/${id}`);
     redirect("/blogs");
   } else {
-    console.log("Not Possible!");
+    console.log("Not permitted!");
   }
 };
 
@@ -165,7 +165,7 @@ export const deleteComment = async (commentId, blogId) => {
       revalidatePath(`/blogs/${blogId}`);
     }
   } else {
-    console.log("You Are Not Authorize to Delete This Comment!");
+    console.log("You have insufficient permissions to delete comment!");
   }
 };
 

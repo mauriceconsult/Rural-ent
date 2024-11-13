@@ -4,7 +4,7 @@ import Search from "../../../components/Search";
 const fetchBlogs = async (query = "") => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/my-blogs?query=${query}`,
+      `https://comms-git-newgenie1-maurices-projects-d466cd11.vercel.app/api/my-blogs?query=${query}`,
       {
         method: "GET",
         headers: {
