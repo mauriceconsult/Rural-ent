@@ -29,7 +29,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     if (!userInfo.username || !userInfo.email || !userInfo.password) {
-      setError("Must provide all the Credentials!");
+      setError("Please provide all the Credentials!");
     }
 
     try {

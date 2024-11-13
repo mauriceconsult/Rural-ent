@@ -29,7 +29,7 @@ const LoginPage = () => {
 
     console.log(userInfo);
     if (!userInfo.email || !userInfo.password) {
-      setError("Must provide all the Credentials!");
+      setError("Please provide all the Credentials!");
     }
     try {
       setPending(true);
